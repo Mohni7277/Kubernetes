@@ -1,24 +1,25 @@
 # Kubernetes
 **Introduction to Kubernetes**
 
-Kubernetes (K8s) is an open-source container orchestration platform for automating deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF).It provides a robust and scalable system for managing microservices across multiple nodes. Understanding Kubernetes architecture is crucial for effectively deploying and managing applications in a distributed environment.
+**Kubernetes (K8s)** is an open-source container orchestration platform for automating deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF).It provides a robust and scalable system for managing microservices across multiple nodes. Understanding Kubernetes architecture is crucial for effectively deploying and managing applications in a distributed environment.
 Kubernetes Architecture Overview
 Kubernetes follows a master-worker architecture where the Control Plane manages the cluster, and Worker Nodes execute application workloads.
-Key Components of Kubernetes Architecture:
+
+**Key Components of Kubernetes Architecture:**
 1.	Control Plane (Manages the cluster)
 2.	Worker Nodes (Run application workloads)
 3.	Networking & Storage Components (Enable seamless communication and data persistence)
 
-●	Control Plane/Master Node Components
+●	**Control Plane/Master Node Components**
 The Control Plane is responsible for managing the cluster, maintaining the desired state, scheduling workloads, and handling API requests. It includes:
-a) API Server (kube-apiserver)
+**a) API Server (kube-apiserver)**
 ●	Acts as the frontend of the Kubernetes cluster.
 
 ●	Exposes REST APIs for interaction with the cluster.
 
 ●	All internal and external requests go through this server.
 
-b) Controller Manager (kube-controller-manager)
+**b) Controller Manager (kube-controller-manager)**
 ●	Runs various controllers to maintain the cluster's desired state.
 
 ●	Key controllers include:
@@ -29,29 +30,31 @@ b) Controller Manager (kube-controller-manager)
 
 ○	Endpoint Controller: Manages service endpoints.
 
-c) Scheduler (kube-scheduler)
+**c) Scheduler (kube-scheduler)**
 ●	Assigns Pods to nodes based on resource availability, constraints, and policies.
 
 ●	Factors like CPU, memory, and affinity rules are considered during scheduling.
 
-d) etcd (Distributed Key-Value Store)
+**d) etcd (Distributed Key-Value Store)**
 ●	Stores all cluster data, including configuration, policies, and state information.
 
 ●	Provides high availability and consistency across the cluster.
 
 ●	Worker Node Components
+
 Worker Nodes are responsible for running application workloads. Each node contains:
-a) Kubelet
+
+**a) Kubelet**
 ●	A lightweight agent that ensures the required containers are running on a node.
 
 ●	Communicates with the API Server to receive instructions.
 
-b) Kube Proxy
+**b) Kube Proxy**
 ●	Manages network rules and facilitates communication between different services and pods.
 
 ●	Implements service discovery and load balancing.
 
-c) Container Runtime
+**c) Container Runtime**
 ●	Runs and manages containers inside pods.
 
 ●	Common runtimes include Docker, containerd, and CRI-O.
@@ -60,7 +63,7 @@ c) Container Runtime
 Understanding these core components helps DevOps engineers and cloud professionals deploy and manage Kubernetes . “
 Production Ready Kubernetes Cluster setup in 2025 — A Complete Guide
  
-Step 1 : Enable IPv4 packet forwarding :-
+**Step 1:** Enable IPv4 packet forwarding :-
 To manually enable IPv4 packet forwarding:
  
 # sysctl params required by setup, params persist across reboots
@@ -79,7 +82,8 @@ sudo vim /etc/fstab
 commentout swap commandline -
  #/swapfile         none       swap	sw          	0       0
 ---------------------------------------------------------------------------
- Step 3: Install Container Runtime Interface
+
+ **Step 3:** Install Container Runtime Interface
 Follow this step in all nodes .
 To run Kubernetes you need at least one CRI which could be –
 ●	containerd
@@ -107,7 +111,8 @@ Check the containerd status using following command :-
 Sudo systemctl status containerd
  
 -----------------------------------------------------------------------------------------
-Step 4: Configure Cgroup Driver  ---
+
+**Step 4:** Configure Cgroup Driver  ---
 Do Follow this step in all nodes .
 There are two cgroup drivers available:
 ●	cgroupfs
@@ -127,7 +132,7 @@ That’s it my friend you have successfully configured the cgroup driver .
  
 ---------------------------------------------------------------------------------------------
  
-Step 5: Installing kubeadm, kubelet, kubectl
+**Step 5:** Installing kubeadm, kubelet, kubectl
  
 These instructions are for Kubernetes v1.32. and do follow this step in all of your nodes
  
@@ -159,7 +164,8 @@ sudo systemctl enable --now kubelet
  
 That’s it my friend you have successfully Installed Kubernetes .
 ------------------------------------------------------------------------------------------------
-Step 6: Creating Cluster
+
+**Step 6:** Creating Cluster
 Follow this guide in Masternode only-
 Run the following Command to create the cluster :-
 kubeadm init --apiserver-advertise-address 192.168.1.108 --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
@@ -196,7 +202,7 @@ If you are facing any problem joining with worker node you can also try these co
 2nd – systemctl restart containerd
  
  
-Step 7: Container Network Interface ( CNI ) Setup
+**Step 7:** Container Network Interface ( CNI ) Setup
 At this point you just have need to install a CNI to create a Proper Netwrok interface . to do so you have variety of options available as follows :-
 ●	ACI provides integrated container networking and network security with Cisco ACI.
 ●	Antrea operates at Layer 3/4 to provide networking and security services for Kubernetes, leveraging Open vSwitch as the networking data plane. Antrea is a CNCF project at the Sandbox level.
@@ -222,8 +228,8 @@ Run -  “ kubectl get no “ to see the Status
 if it is Ready which mean you are all set .
 
 **Authors**
-Mohni Kumari, Ram Nivas, Divya Sinha  Anuradha, Farhat,
+Mohni Kumari, Ram Nivas, Divya Sinha  Anuradha, Farhat
 **Mentor**
  Anil Kumar Dahiya
-DevOps
+ DarkBlue DevOps Solutions Pvt Ltd
  
